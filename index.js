@@ -19,8 +19,8 @@ app.post("/create_preference", (req, res) => {
   let preference = {
     items: req.body.items,
     back_urls: {
-      success: "",
-      failure: "",
+      success: "http://localhost:5173/shop",
+      failure: "http://localhost:5173/shop",
       pending: "",
     },
 
@@ -30,6 +30,17 @@ app.post("/create_preference", (req, res) => {
       mode: "not_specified",
     },
   };
+
+  mercadopago.preferences
+    .create(preference)
+    .then(function (response) {
+      res.json({
+        id: response.body.id,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 });
 
 app.listen(8080, () => {
