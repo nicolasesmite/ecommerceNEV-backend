@@ -20,7 +20,7 @@ app.post("/create_preference", (req, res) => {
     items: req.body.items,
     back_urls: {
       success: "http://localhost:5173/checkout",
-      failure: "http://localhost:5173/checkout",
+      failure: "http://localhost:5173/cart",
       pending: "",
     },
 
